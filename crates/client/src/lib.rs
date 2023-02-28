@@ -7,6 +7,11 @@ pub mod utils;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
+/// **Internal API**
+/// 
+/// Not to be consumed
+/// 
+/// [Source](https://github.com/remix-pwa/remix-pwa-ecosystem/blob/main/crates/client/src/lib.rs#L12)
 #[cfg(feature = "console_error_panic_hook")]
 #[wasm_bindgen]
 pub fn init_console_panic() {
