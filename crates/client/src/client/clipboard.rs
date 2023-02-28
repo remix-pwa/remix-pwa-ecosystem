@@ -5,14 +5,20 @@ use web_sys::window;
 
 use crate::client::response::ClientResponse;
 
-// [short sentence explaining what it is]
-
-// [more detailed explanation]
-
-// [at least one code example that users can copy/paste to try it]
-
-// [even more advanced explanations if necessary]
-
+/// Copy text to the clipboard.
+/// 
+/// ## Example
+/// 
+/// ```tsx
+/// const copy = async(text: string) => {
+///   await copyToClipboard(text)
+/// }
+/// 
+/// <button onClick={() => copy(text)}>Copy<button>
+/// ```
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText)
+/// 
 #[wasm_bindgen(js_name = "copyToClipboard")]
 pub async fn copy_to_clipboard(text: String) -> Result<ClientResponse, ClientResponse> {
     let window = window().expect("Error occured! Are you calling this function in the server?");
@@ -34,7 +40,21 @@ pub async fn copy_to_clipboard(text: String) -> Result<ClientResponse, ClientRes
     }
 }
 
-#[wasm_bindgen]
+/// Returns the last copied text from the clipboard
+/// 
+/// ## Example
+/// 
+/// ```tsx
+/// const paste = async() => {
+///   let text = await pasteFromClipboard();
+///   
+///   setTextAreaContents(text)
+/// }
+/// ```
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/readText)
+/// 
+#[wasm_bindgen(js_name = "pasteFromClipboard")]
 pub async fn paste_from_clipbaord() -> String {
     let window = window().expect("Error occured! Are you calling this function in the server?");
     let navigator = window.navigator();
@@ -59,7 +79,22 @@ pub async fn paste_from_clipbaord() -> String {
 }
 
 /// *Unstable API* ☣️
-#[wasm_bindgen]
+/// 
+/// Copy an image to the clipboard
+/// 
+/// **This API is super unstable, don't use except if you love confetti**
+/// 
+/// ## Example
+/// 
+/// ```tsx
+/// const copyImage = async(image: string) => {
+///   await copyImageToClipboard(image)
+/// } 
+/// ```
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText)
+/// 
+#[wasm_bindgen(js_name = "copyImageToClipboard")]
 pub async fn copy_image_to_clipboard(image: String) -> Result<ClientResponse, ClientResponse> {
     let window = window().expect("Error occured! Are you calling this function in the server?");
     let navigator = window.navigator();

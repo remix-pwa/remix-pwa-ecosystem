@@ -2,7 +2,18 @@ use log::{error, info};
 use wasm_bindgen::prelude::*;
 use web_sys::window;
 
-#[wasm_bindgen]
+
+/// Gets the language of the user's browser.
+/// 
+/// ## Example
+/// 
+/// ```tsx
+/// const preferredLanguage = await getLanguage();
+/// setLanguageContext(preferredLanguage); 
+/// ```
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language)
+#[wasm_bindgen(js_name = "getLanguage")]
 pub async fn get_language() -> Result<String, JsValue> {
     let window = window().expect("Error occured! Are you calling this function in the server?");
     let navigator = window.navigator();

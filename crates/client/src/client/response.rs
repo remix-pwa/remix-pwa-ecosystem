@@ -1,5 +1,20 @@
 use wasm_bindgen::prelude::*;
 
+/// An object denoting wether a response is successful 
+/// or bad
+/// 
+/// ## Attributes
+/// `status`: "success" | "error"
+/// 
+/// `message`: `string`
+/// 
+/// ## Methods
+/// 
+/// `ClientResponse.getStatus(): string`: Returns the status message
+/// 
+/// `ClientResponse.getMessage(): string`: Returns the message
+/// 
+/// [Source](https://github.com/remix-pwa/remix-pwa-ecosystem/blob/main/crates/client/src/client/response.rs)
 #[wasm_bindgen]
 #[derive(Clone, Debug)]
 pub struct ClientResponse {
@@ -14,12 +29,12 @@ impl ClientResponse {
     ClientResponse { status: status.to_string(), message: message.to_string() }
   }
 
-  #[wasm_bindgen(getter)]
+  #[wasm_bindgen(getter, js_name = "getStatus")]
   pub fn get_status(&self) -> String {
     self.status.clone()
   }
 
-  #[wasm_bindgen(getter)]
+  #[wasm_bindgen(getter, js_name = "getMessage")]
   pub fn get_message(&self) -> String {
     self.message.clone()
   }

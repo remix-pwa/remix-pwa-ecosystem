@@ -1,7 +1,18 @@
 use js_sys::Array;
 use wasm_bindgen::prelude::*;
 
-#[wasm_bindgen]
+/// Returns the languages of the browser in an array
+/// that's ordered by user preference.
+/// 
+/// ## Example
+/// 
+/// ```tsx
+/// let languages: string[] = await getLanguages();
+/// setUserLanguages(languages)
+/// ```
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/languages)
+#[wasm_bindgen(js_name = "getLanguages")]
 pub async fn get_languages() -> Result<Array, JsValue> {
     let languages = web_sys::window()
         .expect("Can't find the window object. Ensure you are calling this API in the browser")
