@@ -1,0 +1,3 @@
+[build]
+rustflags = ["--cfg=web_sys_unstable_apis", "--cfg=console_error_panic_hook", "--cfg=wee_alloc"]
+# rustc-wrapper = "Add-your-path-to-sccache"
