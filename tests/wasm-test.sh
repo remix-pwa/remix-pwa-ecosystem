@@ -46,14 +46,14 @@ if [[ "$first_arg" == "--all" ]]; then
   do
     if [ "$value" != "[" ] && [ "$value" != "]" ]; then
         echo "Packing $value and getting it ready..."
-        eval "$COMMAND $value -- --features console_error_panic_hook"
+        eval "$COMMAND $value"
     fi
   done
 else
   for arg in "$@"
   do
     echo "Packing $arg. Hang on..."
-    eval "$COMMAND $arg -- --features console_error_panic_hook"
+    eval "$COMMAND $arg"
   done
 fi
 
