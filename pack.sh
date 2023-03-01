@@ -7,12 +7,18 @@
 
 COMMAND="wasm-pack.exe build --target web --scope remix-pwa"
 
+# Install toml-cli & json for toml parsing
+npm install -g toml-cli
+npm install -g json
+
 if [ "$1" == "--all" ] || [ "$1" == "" ]; then
-  VALUES=("crates/client")
+  VALUES=($(toml < ./Cargo.toml | json workspace.members))
   for value in "${VALUES[@]}"
   do
-    echo "Packing $value and getting it ready..."
-    eval "$COMMAND $value"
+    if [ "$value" != "[" ] && [ "$value" != "]" ]; then
+        echo "Packing $value and getting it ready..."
+        eval "$COMMAND $value"
+    fi
   done
 else
   for arg in "$@"
