@@ -2,12 +2,12 @@
 
 # Script to package all WASM crates and get them ready for release
 
-# Usage: ./pack.sh --all
+# Usage: ./pack.sh --all # default
 # Usage: ./pack.sh <crate_name> # can also take multiple crates
 
-COMMAND="wasm-pack --target web"
+COMMAND="wasm-pack.exe build --target web --scope remix-pwa"
 
-if [[ "$1" == "--all" ]]; then
+if [ "$1" == "--all" ] || [ "$1" == "" ]; then
   VALUES=("crates/client")
   for value in "${VALUES[@]}"
   do
