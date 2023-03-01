@@ -2,7 +2,13 @@ use js_sys::Function;
 use wasm_bindgen::prelude::*;
 use web_sys::Geolocation;
 
-#[wasm_bindgen]
+/// Returns a `Geolocation` object that allows you to 
+/// determine the position of the user's device programatically.
+/// 
+/// *Requires the geolocation permission*
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/geolocation)
+#[wasm_bindgen(js_name = "getGeolocationObject")]
 pub async fn get_geolocation_object() -> Result<Geolocation, JsValue> {
     let window = web_sys::window().expect("no global `window` exists");
     let navigator = window.navigator();
@@ -12,9 +18,14 @@ pub async fn get_geolocation_object() -> Result<Geolocation, JsValue> {
     Ok(geolocation)
 }
 
-// todo!("Add geolocation getPosition but with error callback and also with options")
+// todo!("Add geolocation getPosition but with error callback and also with options");
 
-#[wasm_bindgen]
+/// Returns the current position of the user's device. Takes in a 
+/// success callback that would be incoked when the user's device 
+/// has been successfully located
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition)
+#[wasm_bindgen(js_name = "getCurrentPosition")]
 pub async fn get_current_position(success_callback: &Function) -> Result<(), JsValue> {
     let window = web_sys::window().expect("no global `window` exists");
     let navigator = window.navigator();

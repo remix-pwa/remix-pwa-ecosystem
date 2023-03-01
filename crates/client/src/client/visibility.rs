@@ -1,7 +1,10 @@
 use wasm_bindgen::prelude::*;
 use web_sys::VisibilityState;
 
-#[wasm_bindgen]
+/// Returns the current visibility state of the document
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState)
+#[wasm_bindgen(js_name = "getVisibilityState")]
 pub fn get_visibility_state() -> Result<VisibilityState, JsValue> {
     let window = web_sys::window()
         .expect("`window` doesn't exists. Make sure you are calling this function in the browser");

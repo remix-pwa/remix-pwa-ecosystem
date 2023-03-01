@@ -2,6 +2,18 @@ use js_sys::{Object, Reflect};
 use wasm_bindgen::prelude::*;
 use wasm_bindgen_futures::JsFuture;
 
+/// Returns the current permission status of the an API.
+/// Takes in the permission string as a parameter.
+/// 
+/// ## Examplae 
+/// 
+/// ```tsx
+/// if(getPermissionStatus('geolocation').state == "granted") {
+///   console.log("You live somewhere on earth. Apparently.")
+/// }
+/// ```
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Permissions/query)
 #[wasm_bindgen]
 pub async fn get_permission_status(permission: String) -> Result<JsValue, JsValue> {
     let window = web_sys::window().expect("no global `window` exists. Make sure you are calling this function in the browser");

@@ -2,7 +2,17 @@ use wasm_bindgen::prelude::*;
 use js_sys::Function;
 use web_sys::{NetworkInformation, ConnectionType};
 
-#[wasm_bindgen]
+/// Check wether a user is offline or online.
+/// Returns a boolean
+/// 
+/// ## Example
+/// 
+/// ```tsx
+/// isOnline ? <div>Online!</div> : <div>Offline :(</div>
+/// ```
+/// 
+/// [MDN Documentaion](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
+#[wasm_bindgen(js_name = "isOnline")]
 pub async fn is_online() -> Result<bool, JsValue> {
     let window = web_sys::window().expect("no global `window` exists");
     let navigator = window.navigator();
@@ -16,8 +26,17 @@ pub async fn is_online() -> Result<bool, JsValue> {
     }
 }
 
-/// Returns
-#[wasm_bindgen]
+/// Checks wether a user is online or offline and calls a 
+/// callback based on the connection state
+/// 
+/// ## Example
+/// 
+/// ```tsx
+/// checKConnectivity((): void => {console.log("Online")}, (): void => {console.log("Offline")})
+/// ```
+/// 
+/// [MDN Documentaion](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)
+#[wasm_bindgen(js_name = "checkConnectivity")]
 pub async fn check_connectivity(online: &Function, offline: &Function) {
     let window = web_sys::window().expect("no global `window` exists");
     let navigator = window.navigator();
@@ -31,7 +50,11 @@ pub async fn check_connectivity(online: &Function, offline: &Function) {
     }
 }
 
-#[wasm_bindgen]
+/// Returns a `NetworkInformation` object about the user
+/// 
+/// [MDN Documentaion](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/connection) | 
+/// [NetworkInformation](https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation)
+#[wasm_bindgen(js_name = "getNetworkInformation")]
 pub async fn get_network_information() -> Result<NetworkInformation, JsValue> {
     let window = web_sys::window().expect("no global `window` exists");
     let navigator = window.navigator();
@@ -41,7 +64,20 @@ pub async fn get_network_information() -> Result<NetworkInformation, JsValue> {
     Ok(connection)
 }
 
-#[wasm_bindgen]
+/// Returns the type of connection the user is using to 
+/// connect to the browser. Check out the docs for possible values.
+/// 
+/// Useful in scenarios where you want to reduce data usage if 
+/// user is connected with cellular, for example.
+/// 
+/// ## Example
+/// 
+/// if(getType() == "wifi") {
+///   console.log("Let's turn up the heat!!!")
+/// }
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation/type)
+#[wasm_bindgen(js_name = "getType")]
 pub async fn get_type() -> Result<ConnectionType, JsValue> {
     let window = web_sys::window().expect("no global `window` exists");
     let navigator = window.navigator();

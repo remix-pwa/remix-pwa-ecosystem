@@ -3,7 +3,11 @@ use wasm_bindgen::prelude::*;
 
 use crate::client::response::ClientResponse;
 
-#[wasm_bindgen]
+/// Request access to fullscreen and if allowed, provides fullscreen
+/// functionality to a DOM element.
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullscreen)
+#[wasm_bindgen(js_name = "requestFullscreen")]
 pub async fn request_fullscreen() -> Result<ClientResponse, ClientResponse> {
     let window = web_sys::window()
         .expect("`window` doesn't exists. Make sure you are calling this function in the browser");
@@ -27,7 +31,10 @@ pub async fn request_fullscreen() -> Result<ClientResponse, ClientResponse> {
     }
 }
 
-#[wasm_bindgen]
+/// Exits fullscreen on the document. *Duh*
+/// 
+/// [MDN Documentation]()
+#[wasm_bindgen(js_name = "exitFullscreen")]
 pub async fn exit_fullscreen() {
     let window = web_sys::window()
         .expect("`window` doesn't exists. Make sure you are calling this function in the browser");
@@ -38,7 +45,11 @@ pub async fn exit_fullscreen() {
     document.exit_fullscreen();
 }
 
-#[wasm_bindgen]
+/// Check wether the document is currently in fullscreen mode or not.
+/// Returns a boolean.
+/// 
+/// [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document/fullscreen)
+#[wasm_bindgen(js_name = "isFullscreen")]
 pub async fn is_fullscreen() -> Result<Boolean, JsValue> {
     let window = web_sys::window()
         .expect("`window` doesn't exists. Make sure you are calling this function in the browser");
