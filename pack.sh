@@ -7,7 +7,6 @@
 
 COMMAND="wasm-pack --target web"
 
-# Check if the --all flag is set
 if [[ "$1" == "--all" ]]; then
   VALUES=("crates/client")
   for value in "${VALUES[@]}"
@@ -18,7 +17,7 @@ if [[ "$1" == "--all" ]]; then
 else
   for arg in "$@"
   do
-    echo "Executing command for $arg"
+    echo "Packing $arg. Hang on..."
     eval "$COMMAND $arg"
   done
 fi
