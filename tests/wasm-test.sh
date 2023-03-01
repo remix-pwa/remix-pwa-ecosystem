@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Issue when running script without `--headless` mode.
+# Skips testing all other crates after testing first crate
+# `--headless` mode doesn't work well with web_sys either
+# Fix needed
+
 ## wasm-pack test helper script
 
 # Usage: ./test.sh --all # default (not-required)
